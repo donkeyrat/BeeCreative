@@ -23,11 +23,16 @@ namespace Creative
 
         public IEnumerator DoTase(float amount)
         {
+            bool previouslyContainedConstantForce = true;
             var mainRig = transform.root.GetComponent<Unit>().data.mainRig;
-            mainRig.gameObject.AddComponent<ConstantForce>().force = Vector3.down * 700f * mainRig.mass;
+            if (!mainRig.GetComponent<ConstantForce>())
+            {
+                previouslyContainedConstantForce = false;
+                mainRig.gameObject.AddComponent<ConstantForce>().force = Vector3.down * 700f * mainRig.mass;
+            }
             taserEffect = amount;
             yield return new WaitUntil(() => taserEffect <= 0f);
-            Destroy(mainRig.gameObject.GetComponent<ConstantForce>());
+            if (!previouslyContainedConstantForce) Destroy(mainRig.GetComponent<ConstantForce>());
             yield break;
         }
 
