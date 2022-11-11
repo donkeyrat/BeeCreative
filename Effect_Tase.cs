@@ -13,7 +13,7 @@ namespace Creative
 
         public override void Ping()
         {
-            Tase(taseAmount);
+            //Tase(taseAmount);
         }
 
         public void Tase(float amount)
@@ -23,32 +23,11 @@ namespace Creative
 
         public IEnumerator DoTase(float amount)
         {
-            if (transform.root.GetComponent<Unit>().data.GetComponent<StandingHandler>())
-            {
-                //Credit to Harren Tonderen for helping me figure out how to do this.
-                transform.root.GetComponent<Unit>().data.GetComponent<StandingHandler>().selfOffset -= -50f;
-            }
-            if (transform.root.GetComponentInChildren<StandingBodyPart>())
-            {
-                foreach (var stand in transform.root.GetComponentsInChildren<StandingBodyPart>())
-                {
-                    stand.enabled = false;
-                }
-            }
+            var mainRig = transform.root.GetComponent<Unit>().data.mainRig;
+            mainRig.gameObject.AddComponent<ConstantForce>().force = Vector3.down * 700f * mainRig.mass;
             taserEffect = amount;
             yield return new WaitUntil(() => taserEffect <= 0f);
-            if (transform.root.GetComponent<Unit>().data.GetComponent<StandingHandler>())
-            {
-                //Credit to Harren Tonderen for helping me figure out how to do this.
-                transform.root.GetComponent<Unit>().data.GetComponent<StandingHandler>().selfOffset += selfOffset;
-            }
-            if (transform.root.GetComponentInChildren<StandingBodyPart>())
-            {
-                foreach (var stand in transform.root.GetComponentsInChildren<StandingBodyPart>())
-                {
-                    stand.enabled = false;
-                }
-            }
+            Destroy(mainRig.gameObject.GetComponent<ConstantForce>());
             yield break;
         }
 
