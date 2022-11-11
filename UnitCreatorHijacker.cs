@@ -29,13 +29,17 @@ namespace Creative
                 var bases = new List<UnitEditorManager.UnitBaseWrapper>(manager.UnitBases);
                 foreach (var b in CRMain.creative.LoadAllAssets<UnitBlueprint>())
                 {
-                    bases.Add(new UnitEditorManager.UnitBaseWrapper
+                    var wrapper = new UnitEditorManager.UnitBaseWrapper
                     {
                         BaseDisplayName = b.Entity.Name,
                         UnitBaseBlueprint = b,
-                        BaseIcon = b.Entity.SpriteIcon,
                         UnitBaseRestriction = CharacterItem.UnitBaseRestrictions.None
+                    };
+                    b.Entity.GetSpriteIconAsync(sprite =>
+                    {
+                        wrapper.BaseIcon = sprite;
                     });
+                    bases.Add(wrapper);
                 }
                 manager.UnitBases = bases.ToArray();
             }

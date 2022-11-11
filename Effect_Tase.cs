@@ -26,7 +26,7 @@ namespace Creative
             if (transform.root.GetComponent<Unit>().data.GetComponent<StandingHandler>())
             {
                 //Credit to Harren Tonderen for helping me figure out how to do this.
-                transform.root.GetComponent<Unit>().data.GetComponent<StandingHandler>().selfOffset -= selfOffset;
+                transform.root.GetComponent<Unit>().data.GetComponent<StandingHandler>().selfOffset -= -50f;
             }
             if (transform.root.GetComponentInChildren<StandingBodyPart>())
             {
@@ -37,7 +37,6 @@ namespace Creative
             }
             taserEffect = amount;
             yield return new WaitUntil(() => taserEffect <= 0f);
-            Debug.Log("Fridge");
             if (transform.root.GetComponent<Unit>().data.GetComponent<StandingHandler>())
             {
                 //Credit to Harren Tonderen for helping me figure out how to do this.
