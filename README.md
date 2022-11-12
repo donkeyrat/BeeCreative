@@ -34,6 +34,10 @@ The mod's [**Github**](https://github.com/donkeyrat/BeeCreative) is now the only
  - Updated taser effect.
  - Improved prop recoloring.
 
+### 1.1.2
+
+ - Fixed the lack of sounds.
+
 ## Credits
 
 This mod was created by Team Grad, an ambitious mod team that aims to improve the game through adding a plethora of new content!
