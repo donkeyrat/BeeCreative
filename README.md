@@ -38,6 +38,10 @@ The mod's [**Github**](https://github.com/donkeyrat/BeeCreative) is now the only
 
  - Fixed the lack of sounds.
 
+### 1.1.3
+
+ - Fixed the lack of sounds.
+
 ## Credits
 
 This mod was created by Team Grad, an ambitious mod team that aims to improve the game through adding a plethora of new content!
